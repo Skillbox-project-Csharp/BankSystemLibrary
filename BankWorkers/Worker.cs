@@ -1,5 +1,6 @@
 ﻿using BankSystemLibrary.BankSystem;
 using BankSystemLibrary.BankSystem.BankAccounts;
+using BankSystemLibrary.BankSystem.BankWorkers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,10 +46,11 @@ namespace BankSystemLibrary.BankWorkers
         /// <param name="recipientAccount">Счет получателя</param>
         /// <param name="value">Сумма перевода</param>
         /// <returns></returns>
+        /// <exception cref="AccessRightsException" />
         public abstract bool MoneyTransfer<T, M>(Client sender, T senderAccount, Client recipient, M recipientAccount, double value)
             where T : BankAccount
             where M : BankAccount;
-        
+
         /// <summary>
         /// Пополнение клиетского счета по типу 
         /// </summary>
@@ -56,6 +58,7 @@ namespace BankSystemLibrary.BankWorkers
         /// <param name="type"></param>
         /// <param name="value"></param>
         /// <returns></returns>
+        /// <exception cref="AccessRightsException" />
         public abstract bool ReplenishmentByTypeAccount(Client client, Type type, double value);
         /// <summary>
         /// Перевод средств между счетами клиентов ковариатный
@@ -66,6 +69,7 @@ namespace BankSystemLibrary.BankWorkers
         /// <param name="recipientAccount">Счет получателя</param>
         /// <param name="value">Сумма перевода</param>
         /// <returns></returns>
+        /// <exception cref="AccessRightsException" />
         public abstract bool MoneyTransferCov(Client sender, BankAccount senderAccount, Client recipient, BankAccount recipientAccount, double value);
        
 
